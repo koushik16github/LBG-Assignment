@@ -20,7 +20,7 @@ class GetItemsUseCase @Inject constructor(
                     emit(Result.Success(items))
                 },
                 onFailure = { throwable ->
-                    emit(Result.Failure(Exception(throwable)))
+                    emit(Result.Failure(throwable))
                 }
             )
         } catch (e: Exception) {

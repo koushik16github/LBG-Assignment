@@ -3,11 +3,18 @@ package com.koushik.domain.usecase
 import com.koushik.data.model.Item
 import com.koushik.data.repository.NetworkRepository
 import com.koushik.domain.model.Result
+import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -15,19 +22,30 @@ import org.junit.Test
 @OptIn(ExperimentalCoroutinesApi::class)
 class GetItemsUseCaseTest {
 
+    @MockK
+    private lateinit var networkRepository: NetworkRepository
+
     private lateinit var getItemsUseCase: GetItemsUseCase
-    private val mockRepository: NetworkRepository = mockk()
+
+    private val testDispatcher = StandardTestDispatcher()
 
     @Before
     fun setup() {
-        getItemsUseCase = GetItemsUseCase(mockRepository)
+        MockKAnnotations.init(this, relaxed = true)
+        Dispatchers.setMain(testDispatcher)
+        getItemsUseCase = GetItemsUseCase(networkRepository)
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
     fun `invoke should emit loading and success when repository returns items`() = runTest {
         // Arrange
         val mockItems = listOf(Item("1", "Item 1", "", ""), Item("2", "Item 2", "", ""))
-        coEvery { mockRepository.fetchItems() } returns kotlin.Result.success(mockItems)
+        coEvery { networkRepository.fetchItems() } returns kotlin.Result.success(mockItems)
 
         // Act
         val results = getItemsUseCase().toList()
@@ -41,7 +59,7 @@ class GetItemsUseCaseTest {
     fun `invoke should emit loading and failure when repository returns an error`() = runTest {
         // Arrange
         val mockException = Exception("Network error")
-        coEvery { mockRepository.fetchItems() } returns kotlin.Result.failure(mockException)
+        coEvery { networkRepository.fetchItems() } returns kotlin.Result.failure(mockException)
 
         // Act
         val results = getItemsUseCase().toList()
@@ -55,7 +73,7 @@ class GetItemsUseCaseTest {
     fun `invoke should emit failure when an exception is thrown`() = runTest {
         // Arrange
         val mockException = Exception("Unexpected error")
-        coEvery { mockRepository.fetchItems() } throws mockException
+        coEvery { networkRepository.fetchItems() } throws mockException
 
         // Act
         val results = getItemsUseCase().toList()
