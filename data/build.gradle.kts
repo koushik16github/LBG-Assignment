@@ -39,6 +39,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    testImplementation(libs.junit.jupiter)
     kapt(libs.hilt.compiler)
 
     // Retrofit
@@ -47,8 +48,4 @@ dependencies {
 
     // Coroutines
     implementation(libs.coroutines.core)
-
-    // Unit Testing
-    testImplementation(libs.junit)
-    testImplementation(libs.mockk)
 }

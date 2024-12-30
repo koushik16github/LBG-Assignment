@@ -42,7 +42,18 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-    // Unit Testing
-    testImplementation(libs.junit)
+    // MockK for mocking
     testImplementation(libs.mockk)
+
+    // JUnit for testing
+    testImplementation(libs.junit)
+
+    // Coroutines for testing
+    testImplementation(libs.coroutines.test)
+
+    // Hilt Testing dependencies
+    testImplementation(libs.hilt.android.testing)
+
+    // Lifecycle Testing dependencies
+    testImplementation(libs.arch.core.testing)
 }

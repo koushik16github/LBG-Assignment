@@ -63,9 +63,18 @@ dependencies {
     implementation(libs.coroutines.android)
     implementation(libs.coil.compose)
 
-    // Test dependencies
+    // MockK for mocking
     testImplementation(libs.mockk)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.androidx.core.testing)
+
+    // JUnit for testing
     testImplementation(libs.junit)
+
+    // Coroutines for testing
+    testImplementation(libs.coroutines.test)
+
+    // Hilt Testing dependencies
+    testImplementation(libs.hilt.android.testing)
+
+    // Lifecycle Testing dependencies
+    testImplementation(libs.arch.core.testing)
 }
