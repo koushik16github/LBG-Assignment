@@ -75,10 +75,20 @@ class MainViewModelTest {
     }
 
     @Test
+    fun `items should initially be in loading state`() {
+        // Assert
+        val initialState = viewModel.items.value
+        assert(initialState is Result.Loading)
+    }
+
+    @Test
     fun `getItemById should return the correct item when exists`() = runTest {
         // Arrange
-        val mockItems = listOf(Item("1", "Item 1", "Description", "URL"), Item("2", "Item 2", "Description", "URL"))
-        coEvery { getItemsUseCase.invoke() } returns flowOf(Result.Success(mockItems)) // Mocking the invoke method
+        val mockItems = listOf(
+            Item("1", "Item 1", "Description", "URL"),
+            Item("2", "Item 2", "Description", "URL")
+        )
+        coEvery { getItemsUseCase.invoke() } returns flowOf(Result.Success(mockItems))
 
         // Act
         viewModel.fetchItems()
@@ -92,8 +102,11 @@ class MainViewModelTest {
     @Test
     fun `getItemById should return null when item does not exist`() {
         // Arrange
-        val mockItems = listOf(Item("1", "Item 1", "Description", "URL"), Item("2", "Item 2", "Description", "URL"))
-        coEvery { getItemsUseCase.invoke() } returns flowOf(Result.Success(mockItems)) // Mocking the invoke method
+        val mockItems = listOf(
+            Item("1", "Item 1", "Description", "URL"),
+            Item("2", "Item 2", "Description", "URL")
+        )
+        coEvery { getItemsUseCase.invoke() } returns flowOf(Result.Success(mockItems))
 
         // Act
         viewModel.fetchItems()
