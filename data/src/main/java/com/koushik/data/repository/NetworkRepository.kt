@@ -1,5 +1,6 @@
 package com.koushik.data.repository
 
+import com.koushik.core.util.Constants
 import com.koushik.data.api.ApiService
 import com.koushik.data.model.Item
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ class NetworkRepository @Inject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 val response = apiService.getItems(
-                    apiKey = "pub_63235b3f06af2238438d9d95df26477330a1e"
+                    apiKey = Constants.API_KEY
                 )
                 if (response.isSuccessful) {
                     val body = response.body()

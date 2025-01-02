@@ -21,11 +21,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.koushik.data.model.Item
-import com.koushik.domain.model.Result
+import com.koushik.core.model.Result
+import com.koushik.lbgassignment.R
 import com.koushik.lbgassignment.viewmodel.MainViewModel
 
 @Composable
@@ -43,7 +45,7 @@ fun ItemListScreen(viewModel: MainViewModel, onItemClick: (Item) -> Unit) {
         }
         is Result.Failure -> {
             ErrorMessage(
-                error = result.exception.message ?: "Unknown error",
+                error = result.exception.message ?: stringResource(R.string.unknown_error),
                 onRetry = { viewModel.fetchItems() }
             )
         }
@@ -104,14 +106,14 @@ fun ErrorMessage(error: String, onRetry: () -> Unit) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Error: $error",
+                text = stringResource(R.string.error, error),
                 color = Color.Red,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = onRetry) {
-                Text(text = "Retry")
+                Text(text = stringResource(R.string.retry))
             }
         }
     }
@@ -124,7 +126,7 @@ fun EmptyListMessage() {
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            text = "No items found",
+            text = stringResource(R.string.no_items_found),
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center
         )

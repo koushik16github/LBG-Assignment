@@ -1,4 +1,4 @@
-package com.koushik.domain.model
+package com.koushik.core.model
 
 sealed class Result<out T> {
     data class Success<out T>(val data: T) : Result<T>()

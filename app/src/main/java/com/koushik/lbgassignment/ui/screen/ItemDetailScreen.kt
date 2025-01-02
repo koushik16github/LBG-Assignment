@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.koushik.data.model.Item
@@ -29,7 +30,7 @@ fun ItemDetailScreen(item: Item) {
         AsyncImage(
             model = item.imageUrl,
             placeholder = placeholder,
-            contentDescription = "Item Image",
+            contentDescription = stringResource(R.string.item_image),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
@@ -43,7 +44,7 @@ fun ItemDetailScreen(item: Item) {
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Text(
-            text = item.description ?: "No description available",
+            text = item.description ?: stringResource(R.string.no_description_available),
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.padding(bottom = 16.dp)
         )

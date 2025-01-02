@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">LBG Assignment</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="error">Error: %1$s</string>
+    <string name="retry">Retry</string>
+    <string name="no_items_found">No items found</string>
+    <string name="item_image">Item Image</string>
+    <string name="no_description_available">No description available</string>
+    <string name="item_not_found">Item not found</string>
 </resources>

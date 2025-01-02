@@ -1,11 +1,13 @@
 package com.koushik.lbgassignment.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.koushik.lbgassignment.R
 import com.koushik.lbgassignment.ui.screen.ErrorMessage
 import com.koushik.lbgassignment.ui.screen.ItemDetailScreen
 import com.koushik.lbgassignment.ui.screen.ItemListScreen
@@ -30,7 +32,7 @@ fun AppNavigation(navController: NavHostController, viewModel: MainViewModel) {
             val selectedItem = viewModel.getItemById(itemId)
             selectedItem?.let {
                 ItemDetailScreen(item = it)
-            } ?: ErrorMessage(error = "Item not found", onRetry = { navController.popBackStack() })
+            } ?: ErrorMessage(error = stringResource(R.string.item_not_found), onRetry = { navController.popBackStack() })
         }
     }
 }

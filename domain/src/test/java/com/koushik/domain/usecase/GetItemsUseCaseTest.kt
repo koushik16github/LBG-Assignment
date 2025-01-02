@@ -2,11 +2,10 @@ package com.koushik.domain.usecase
 
 import com.koushik.data.model.Item
 import com.koushik.data.repository.NetworkRepository
-import com.koushik.domain.model.Result
+import com.koushik.core.model.Result
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
