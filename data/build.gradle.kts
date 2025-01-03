@@ -39,7 +39,6 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    testImplementation(libs.junit.jupiter)
     kapt(libs.hilt.compiler)
 
     // Retrofit
