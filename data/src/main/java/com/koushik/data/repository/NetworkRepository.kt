@@ -3,6 +3,7 @@ package com.koushik.data.repository
 import com.koushik.core.util.Constants
 import com.koushik.data.api.ApiService
 import com.koushik.data.mapper.toDomainModel
+import com.koushik.data.util.NetworkResponseHandler
 import com.koushik.domain.model.Item
 import com.koushik.domain.repository.ItemRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,20 +21,15 @@ class NetworkRepository @Inject constructor(
                     apiKey = Constants.API_KEY
                 )
 
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    if (body != null && body.status == "success" && body.results != null) {
-                        // Map the list of ItemDto to the domain model Item
-                        val items = body.results.map { it.toDomainModel() }
-                        Result.success(items)
+                NetworkResponseHandler.handleResponse(response) { body ->
+                    if (body.status == "success" && body.results != null) {
+                        body.results.map { it.toDomainModel() }
                     } else {
-                        Result.failure(Throwable("Unknown error"))
+                        throw Throwable("Unknown error")
                     }
-                } else {
-                    Result.failure(Throwable(response.message()))
                 }
             } catch (e: Exception) {
-                Result.failure(e)
+                NetworkResponseHandler.handleException(e)
             }
         }
     }
