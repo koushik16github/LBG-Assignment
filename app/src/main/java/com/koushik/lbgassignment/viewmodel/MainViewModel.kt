@@ -2,8 +2,8 @@ package com.koushik.lbgassignment.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.koushik.data.model.Item
 import com.koushik.core.model.Result
+import com.koushik.domain.model.Item
 import com.koushik.domain.usecase.GetItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

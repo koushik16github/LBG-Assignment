@@ -1,14 +1,14 @@
 package com.koushik.domain.usecase
 
-import com.koushik.data.model.Item
-import com.koushik.data.repository.NetworkRepository
 import com.koushik.core.model.Result
+import com.koushik.domain.model.Item
+import com.koushik.domain.repository.ItemRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetItemsUseCase @Inject constructor(
-    private val repository: NetworkRepository
+    private val repository: ItemRepository
 ) {
     operator fun invoke(): Flow<Result<List<Item>>> = flow {
         try {

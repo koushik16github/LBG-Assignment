@@ -1,6 +1,6 @@
 package com.koushik.domain.di
 
-import com.koushik.data.repository.NetworkRepository
+import com.koushik.domain.repository.ItemRepository
 import com.koushik.domain.usecase.GetItemsUseCase
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,7 @@ object DomainModule {
     // Provides GetItemsUseCase
     @Provides
     @Singleton
-    fun provideGetItemsUseCase(repository: NetworkRepository): GetItemsUseCase {
+    fun provideGetItemsUseCase(repository: ItemRepository): GetItemsUseCase {
         return GetItemsUseCase(repository)
     }
 }

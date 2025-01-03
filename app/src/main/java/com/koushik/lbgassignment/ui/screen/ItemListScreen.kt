@@ -25,8 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.koushik.data.model.Item
 import com.koushik.core.model.Result
+import com.koushik.domain.model.Item
 import com.koushik.lbgassignment.R
 import com.koushik.lbgassignment.viewmodel.MainViewModel
 

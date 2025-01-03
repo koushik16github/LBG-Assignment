@@ -36,7 +36,6 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":data"))
 
     // Hilt
     implementation(libs.hilt.android)

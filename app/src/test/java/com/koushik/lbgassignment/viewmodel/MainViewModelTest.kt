@@ -1,7 +1,7 @@
 package com.koushik.lbgassignment.viewmodel
 
-import com.koushik.data.model.Item
 import com.koushik.core.model.Result
+import com.koushik.domain.model.Item
 import com.koushik.domain.usecase.GetItemsUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
