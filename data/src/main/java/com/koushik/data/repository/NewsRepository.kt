@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class NetworkRepository @Inject constructor(
+class NewsRepository @Inject constructor(
     private val apiService: ApiService
 ) : ItemRepository {
 

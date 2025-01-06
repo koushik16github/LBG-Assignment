@@ -1,7 +1,7 @@
 package com.koushik.data.di
 
 import com.koushik.data.api.ApiService
-import com.koushik.data.repository.NetworkRepository
+import com.koushik.data.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,10 +20,10 @@ object DataModule {
         return retrofit.create(ApiService::class.java)
     }
 
-    // Provides NetworkRepository
+    // Provides NewsRepository
     @Provides
     @Singleton
-    fun provideNetworkRepository(apiService: ApiService): NetworkRepository {
-        return NetworkRepository(apiService)
+    fun provideNewsRepository(apiService: ApiService): NewsRepository {
+        return NewsRepository(apiService)
     }
 }
